@@ -1189,6 +1189,9 @@ class Project(object):
     else:
       branch = None
 
+    if branch is not None and branch != "master" and branch != "default":
+      syncbuf.fail(self, "project is on branch " + branch + ", checkout master before sync")
+
     if branch is None or syncbuf.detach_head:
       # Currently on a detached HEAD.  The user is assumed to
       # not have any local modifications worth worrying about.
