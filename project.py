@@ -1303,9 +1303,10 @@ class Project(object):
                    len(local_changes) - cnt_mine)
 
     branch.remote = self.GetRemote(self.remote.name)
-    if not ID_RE.match(self.revisionExpr):
+    # FIXME: adymo: I do not understand why should we update merge target here
+    # if not ID_RE.match(self.revisionExpr):
       # in case of manifest sync the revisionExpr might be a SHA1
-      branch.merge = self.revisionExpr
+      # branch.merge = self.revisionExpr
     branch.Save()
 
     if cnt_mine > 0 and self.rebase:
